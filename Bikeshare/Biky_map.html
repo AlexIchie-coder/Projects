@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_6b8fb6d62077f9c69235df6331e53a2e {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_6b8fb6d62077f9c69235df6331e53a2e" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_6b8fb6d62077f9c69235df6331e53a2e = L.map(
+                "map_6b8fb6d62077f9c69235df6331e53a2e",
+                {
+                    center: [38.907071380178834, -77.03393078484942],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a9a522520221f1b50fc6cb7bde7d5a6b = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_a9a522520221f1b50fc6cb7bde7d5a6b.addTo(map_6b8fb6d62077f9c69235df6331e53a2e);
+        
+    
+            var marker_cluster_3e7ba9ccf9af85763143cfc4284072b5 = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var marker_fb3ae3c353b80cd54f7418a399f33b3b = L.marker(
+                [38.91563283333333, -77.03814883333334],
+                {
+}
+            ).addTo(marker_cluster_3e7ba9ccf9af85763143cfc4284072b5);
+        
+    
+            var icon_fdb76a70424e7562265f4ddca3522b2b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cloud",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_fb3ae3c353b80cd54f7418a399f33b3b.setIcon(icon_fdb76a70424e7562265f4ddca3522b2b);
+        
+    
+        var popup_9220e5101719f1774f371b5005432b12 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_54c1718f3f5353f280b77cba550e1351 = $(`<div id="html_54c1718f3f5353f280b77cba550e1351" style="width: 100.0%; height: 100.0%;">Start Station: New Hampshire Ave & T St NW<br>Rides: 38</div>`)[0];
+                popup_9220e5101719f1774f371b5005432b12.setContent(html_54c1718f3f5353f280b77cba550e1351);
+            
+        
+
+        marker_fb3ae3c353b80cd54f7418a399f33b3b.bindPopup(popup_9220e5101719f1774f371b5005432b12)
+        ;
+
+        
+    
+    
+            var marker_330e79cd1679570e6cb619345c6f8fdb = L.marker(
+                [38.91560833333333, -77.03832216666666],
+                {
+}
+            ).addTo(marker_cluster_3e7ba9ccf9af85763143cfc4284072b5);
+        
+    
+            var icon_f90d0bed1ce104f879cde26dc8beb9e8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cloud",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_330e79cd1679570e6cb619345c6f8fdb.setIcon(icon_f90d0bed1ce104f879cde26dc8beb9e8);
+        
+    
+        var popup_2113cafa0214c5da26c9527319735214 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b924b99dadc81fc374d862e825331020 = $(`<div id="html_b924b99dadc81fc374d862e825331020" style="width: 100.0%; height: 100.0%;">Start Station: New Hampshire Ave & T St NW<br>Rides: 38</div>`)[0];
+                popup_2113cafa0214c5da26c9527319735214.setContent(html_b924b99dadc81fc374d862e825331020);
+            
+        
+
+        marker_330e79cd1679570e6cb619345c6f8fdb.bindPopup(popup_2113cafa0214c5da26c9527319735214)
+        ;
+
+        
+    
+    
+            var marker_19c4bb83de7f582bf8d3f9e4c1dcbddc = L.marker(
+                [38.91567183333333, -77.03838783333333],
+                {
+}
+            ).addTo(marker_cluster_3e7ba9ccf9af85763143cfc4284072b5);
+        
+    
+            var icon_c2db03c28544b7c66e189fbb9ab0a51e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cloud",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_19c4bb83de7f582bf8d3f9e4c1dcbddc.setIcon(icon_c2db03c28544b7c66e189fbb9ab0a51e);
+        
+    
+        var popup_ff0a2289f2dc87eb62caca06b88e8b74 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0d83203b9e09f5ccdcd49899823e3192 = $(`<div id="html_0d83203b9e09f5ccdcd49899823e3192" style="width: 100.0%; height: 100.0%;">Start Station: New Hampshire Ave & T St NW<br>Rides: 38</div>`)[0];
+                popup_ff0a2289f2dc87eb62caca06b88e8b74.setContent(html_0d83203b9e09f5ccdcd49899823e3192);
+            
+        
+
+        marker_19c4bb83de7f582bf8d3f9e4c1dcbddc.bindPopup(popup_ff0a2289f2dc87eb62caca06b88e8b74)
+        ;
+
+        
+    
+    
+            var marker_568f31a76fe33234ee8791a2793ff2dc = L.marker(
+                [38.915605166666666, -77.03819983333334],
+                {
+}
+            ).addTo(marker_cluster_3e7ba9ccf9af85763143cfc4284072b5);
+        
+    
+            var icon_3911bd7613540e0864cd550f1ac5fcac = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cloud",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_568f31a76fe33234ee8791a2793ff2dc.setIcon(icon_3911bd7613540e0864cd550f1ac5fcac);
+        
+    
+        var popup_c936c55dbe7d2a1c7e719ddce875dace = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d906154516447a0ca7270d4dcf8d1bb7 = $(`<div id="html_d906154516447a0ca7270d4dcf8d1bb7" style="width: 100.0%; height: 100.0%;">Start Station: New Hampshire Ave & T St NW<br>Rides: 38</div>`)[0];
+                popup_c936c55dbe7d2a1c7e719ddce875dace.setContent(html_d906154516447a0ca7270d4dcf8d1bb7);
+            
+        
+
+        marker_568f31a76fe33234ee8791a2793ff2dc.bindPopup(popup_c936c55dbe7d2a1c7e719ddce875dace)
+        ;
+
+        
+    
+    
+            var marker_84d232f7dfe230ba8d40372a1a2c2f7b = L.marker(
+                [38.91569566666666, -77.0381425],
+                {
+}
+            ).addTo(marker_cluster_3e7ba9ccf9af85763143cfc4284072b5);
+        
+    
+            var icon_eb54357e7fa2f02ac7f2c630ee5a4d75 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cloud",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_84d232f7dfe230ba8d40372a1a2c2f7b.setIcon(icon_eb54357e7fa2f02ac7f2c630ee5a4d75);
+        
+    
+        var popup_5d5faf5bc667e1d58cd09139cfe4d3f6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_878a5eb973da85aa3d7b709830dec2fa = $(`<div id="html_878a5eb973da85aa3d7b709830dec2fa" style="width: 100.0%; height: 100.0%;">Start Station: New Hampshire Ave & T St NW<br>Rides: 38</div>`)[0];
+                popup_5d5faf5bc667e1d58cd09139cfe4d3f6.setContent(html_878a5eb973da85aa3d7b709830dec2fa);
+            
+        
+
+        marker_84d232f7dfe230ba8d40372a1a2c2f7b.bindPopup(popup_5d5faf5bc667e1d58cd09139cfe4d3f6)
+        ;
+
+        
+    
+    
+            var marker_783e7a228939f969434ccfb0d575db55 = L.marker(
+                [38.92870516666667, -77.03203733333334],
+                {
+}
+            ).addTo(marker_cluster_3e7ba9ccf9af85763143cfc4284072b5);
+        
+    
+            var icon_c440c57879b322bac57348c1bf6663e1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "cloud",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_783e7a228939f969434ccfb0d575db55.setIcon(icon_c440c57879b322bac57348c1bf6663e1);
+        
+    
+        var popup_a244092861b3b8db36c3be2336f62793 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f2bbb588517517f22760c5938bc89e2f = $(`<div id="html_f2bbb588517517f22760c5938bc89e2f" style="width: 100.0%; height: 100.0%;">End Station: 14th & Irving St NW<br>Rides: 40</div>`)[0];
+                popup_a244092861b3b8db36c3be2336f62793.setContent(html_f2bbb588517517f22760c5938bc89e2f);
+            
+        
+
+        marker_783e7a228939f969434ccfb0d575db55.bindPopup(popup_a244092861b3b8db36c3be2336f62793)
+        ;
+
+        
+    
+    
+            var marker_f491316ad40779c5d240ce3c70cdc882 = L.marker(
+                [38.92854416666667, -77.0322985],
+                {
+}
+            ).addTo(marker_cluster_3e7ba9ccf9af85763143cfc4284072b5);
+        
+    
+            var icon_5fde0c8a37ad84ac743588d187e2049d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "cloud",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_f491316ad40779c5d240ce3c70cdc882.setIcon(icon_5fde0c8a37ad84ac743588d187e2049d);
+        
+    
+        var popup_208bfc356420363373f2bf90b6bafa70 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_08141c826c672daeff9f90843a6b0ccb = $(`<div id="html_08141c826c672daeff9f90843a6b0ccb" style="width: 100.0%; height: 100.0%;">End Station: 14th & Irving St NW<br>Rides: 40</div>`)[0];
+                popup_208bfc356420363373f2bf90b6bafa70.setContent(html_08141c826c672daeff9f90843a6b0ccb);
+            
+        
+
+        marker_f491316ad40779c5d240ce3c70cdc882.bindPopup(popup_208bfc356420363373f2bf90b6bafa70)
+        ;
+
+        
+    
+    
+            var marker_4e04b28e0c78acf44eec598ef686fa48 = L.marker(
+                [38.92859116666666, -77.0323105],
+                {
+}
+            ).addTo(marker_cluster_3e7ba9ccf9af85763143cfc4284072b5);
+        
+    
+            var icon_4caf4136ee3d83a1338817568a39c9e0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "cloud",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_4e04b28e0c78acf44eec598ef686fa48.setIcon(icon_4caf4136ee3d83a1338817568a39c9e0);
+        
+    
+        var popup_2ae133f3619049c84031b154959491ac = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f0dae56f5e5f74996a421b080220f3ec = $(`<div id="html_f0dae56f5e5f74996a421b080220f3ec" style="width: 100.0%; height: 100.0%;">End Station: 14th & Irving St NW<br>Rides: 40</div>`)[0];
+                popup_2ae133f3619049c84031b154959491ac.setContent(html_f0dae56f5e5f74996a421b080220f3ec);
+            
+        
+
+        marker_4e04b28e0c78acf44eec598ef686fa48.bindPopup(popup_2ae133f3619049c84031b154959491ac)
+        ;
+
+        
+    
+    
+            var marker_e82a433b13cde38f9bec9a6b29ca6750 = L.marker(
+                [38.92854016666666, -77.03212033333334],
+                {
+}
+            ).addTo(marker_cluster_3e7ba9ccf9af85763143cfc4284072b5);
+        
+    
+            var icon_f31dc0f81cf63af20704f72eca2edd1f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "cloud",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_e82a433b13cde38f9bec9a6b29ca6750.setIcon(icon_f31dc0f81cf63af20704f72eca2edd1f);
+        
+    
+        var popup_94770b8d1fe8b71fab460c4c4e5ba2a5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3a07e90ced6a76c8d0d3db38f0d9177c = $(`<div id="html_3a07e90ced6a76c8d0d3db38f0d9177c" style="width: 100.0%; height: 100.0%;">End Station: 14th & Irving St NW<br>Rides: 40</div>`)[0];
+                popup_94770b8d1fe8b71fab460c4c4e5ba2a5.setContent(html_3a07e90ced6a76c8d0d3db38f0d9177c);
+            
+        
+
+        marker_e82a433b13cde38f9bec9a6b29ca6750.bindPopup(popup_94770b8d1fe8b71fab460c4c4e5ba2a5)
+        ;
+
+        
+    
+    
+            var marker_28cf5ce277d3455c0e46b0eca2167843 = L.marker(
+                [38.928706166666665, -77.03196583333333],
+                {
+}
+            ).addTo(marker_cluster_3e7ba9ccf9af85763143cfc4284072b5);
+        
+    
+            var icon_3b23531c3000f5c59d1f97175a412056 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "cloud",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_28cf5ce277d3455c0e46b0eca2167843.setIcon(icon_3b23531c3000f5c59d1f97175a412056);
+        
+    
+        var popup_2baa0136bfbaa20a0b73a5ceaf46a4a6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_105622c213a07c0d18994125a6f53afb = $(`<div id="html_105622c213a07c0d18994125a6f53afb" style="width: 100.0%; height: 100.0%;">End Station: 14th & Irving St NW<br>Rides: 40</div>`)[0];
+                popup_2baa0136bfbaa20a0b73a5ceaf46a4a6.setContent(html_105622c213a07c0d18994125a6f53afb);
+            
+        
+
+        marker_28cf5ce277d3455c0e46b0eca2167843.bindPopup(popup_2baa0136bfbaa20a0b73a5ceaf46a4a6)
+        ;
+
+        
+    
+    
+            marker_cluster_3e7ba9ccf9af85763143cfc4284072b5.addTo(map_6b8fb6d62077f9c69235df6331e53a2e);
+        
+</script>
+</html>
