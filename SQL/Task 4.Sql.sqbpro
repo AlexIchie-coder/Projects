@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="Task 4.Sql.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="599"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="Movies" custom_title="0" dock_id="1" table="4,6:mainMovies"/><dock_state state="000000ff00000000fd00000001000000020000000000000000fc0100000001fb000000160064006f0063006b00420072006f00770073006500310100000000ffffffff0000010100ffffff000000000000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1*">CREATE TABLE IF NOT EXISTS Movies (
+  Code INTEGER,
+  Title VARCHAR(255) NOT NULL,
+  Rating VARCHAR(255),
+  PRIMARY KEY (Code)
+);
+
+CREATE TABLE IF NOT EXISTS MovieTheaters (
+  Code INTEGER,
+  Name VARCHAR(255) NOT NULL,
+  Movie INTEGER,
+  PRIMARY KEY (Code)
+  );
+
+</sql><sql name="SQL 2*">INSERT INTO Movies(Code,Title,Rating) VALUES(1,'Citizen Kane','PG');
+INSERT INTO Movies(Code,Title,Rating) VALUES(2,'Singin'' in the Rain','G');
+INSERT INTO Movies(Code,Title,Rating) VALUES(3,'The Wizard of Oz','G');
+INSERT INTO Movies(Code,Title,Rating) VALUES(4,'The Quiet Man',NULL);
+INSERT INTO Movies(Code,Title,Rating) VALUES(5,'North by Northwest',NULL);
+INSERT INTO Movies(Code,Title,Rating) VALUES(6,'The Last Tango in Paris','NC-17');
+INSERT INTO Movies(Code,Title,Rating) VALUES(7,'Some Like it Hot','PG-13');
+INSERT INTO Movies(Code,Title,Rating) VALUES(8,'A Night at the Opera',NULL);
+
+INSERT INTO MovieTheaters(Code,Name,Movie) VALUES(1,'Odeon',5);
+INSERT INTO MovieTheaters(Code,Name,Movie) VALUES(2,'Imperial',1);
+INSERT INTO MovieTheaters(Code,Name,Movie) VALUES(3,'Majestic',NULL);
+INSERT INTO MovieTheaters(Code,Name,Movie) VALUES(4,'Royale',6);
+INSERT INTO MovieTheaters(Code,Name,Movie) VALUES(5,'Paraiso',3);
+INSERT INTO MovieTheaters(Code,Name,Movie) VALUES(6,'Nickelodeon',NULL);
+</sql><sql name="SQL 3*">-- 4.1 Select the title of all movies.
+SELECT Title
+FROM Movies
+-- 4.2 Show all the distinct ratings in the database.
+SELECT DISTINCT Rating
+FROM Movies
+-- 4.3 Show all unrated movies.
+SELECT *
+FROM Movies
+
+SELECT * 
+FROM Movies
+WHERE Rating IS NULL
+-- 4.4 Select all movie theaters that are not currently showing a movie.
+SELECT *
+FROM MovieTheaters
+WHERE Movie IS NULL
+-- 4.5 Select all data from all movie theaters and, additionally, the data from the movie that is being shown in the theater (if one is being shown).
+SELECT *
+FROM Movies
+JOIN MovieTheaters ON Movies.Code=MovieTheaters.Code
+WHERE Rating IS NOT NULL AND Movie IS NOT NULL
+-- 4.6 Select all data from all movies and, if that movie is being shown in a theater, show the data from the theater.
+SELECT *
+FROM Movies
+JOIN MovieTheaters ON Movies.Code=MovieTheaters.Code
+WHERE Rating IS NOT NULL AND Movie IS NOT NULL
+-- 4.7 Show the titles of movies not currently being shown in any theaters.
+SELECT Title
+FROM Movies
+JOIN MovieTheaters ON Movies.Code=MovieTheaters.Code
+WHERE Rating IS NOT NULL AND Movie IS NOT NULL
+-- 4.8 Add the unrated movie &quot;One, Two, Three&quot;.
+INSERT INTO Movies (Title)
+VALUES ('One, Two, Three')
+
+SELECT *
+FROM Movies
+-- 4.9 Set the rating of all unrated movies to &quot;G&quot;.
+SELECT Rating, COALESCE(Rating2, 'G') AS Rating_2
+FROM Movies;
+
+UPDATE Movies
+SET Rating = 'G'
+WHERE Rating IS NULL;
+-- 4.10 Remove movie theaters projecting movies rated &quot;NC-17&quot;.
+
+DELETE 
+FROM MovieTheaters
+ WHERE Name='Nickelodeon'</sql><current_tab id="2"/></tab_sql></sqlb_project>
