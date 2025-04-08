@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: cp
+Version: 2019.3.22
+Summary: cp(source,target,force=True) function
+Home-page: https://github.com/looking-for-a-job/cp.py
+License: UNKNOWN
+Keywords: cp copy
+Platform: UNKNOWN
+Classifier: License :: Public Domain
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: System :: Filesystems
+Description-Content-Type: text/markdown
+Requires-Dist: public
+Requires-Dist: setuptools
+
+<!--
+https://pypi.org/project/readme-generator/
+-->
+
+[![](https://img.shields.io/pypi/pyversions/cp.svg?longCache=True)](https://pypi.org/project/cp/)
+
+#### Installation
+```bash
+$ [sudo] pip install cp
+```
+
+#### Functions
+function|`__doc__`
+-|-
+`cp.cp(source, target, force=True)` |Copy the directory/file src to the directory/file target
+
+#### Examples
+```python
+>>> import cp
+
+>>> cp.cp(src,dst)
+>>> cp.cp(src,dst) # skip, exists
+>>> cp.cp(src,dst,force=True) # force cp
+```
+
+<p align="center">
+    <a href="https://pypi.org/project/readme-generator/">readme-generator</a>
+</p>
+
