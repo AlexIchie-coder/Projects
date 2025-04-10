@@ -1,7 +1,7 @@
 import os
 import requests
 
-def get_data(event, context):
+def get_data():
     symbols=["BTC", "ETH", "SOL"]
     market="EUR"
     api_key = os.getenv('API_KEY')
@@ -48,7 +48,16 @@ def get_data(event, context):
         except KeyError as e:
                 print(f"⚠️ Missing key for {symbol} on {date}: {e}")
     print(all_records)
+    values = []
+    for record in all_records:
+        current_record_values = []
+        for value in record.values():
+            current_record_values.append(value)
+        values.append(current_record_values)
+    print(values)
     return all_records
+
+get_data()
 
 # Example usage
 #crypto_data = get_data()

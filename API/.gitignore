@@ -3,4 +3,4 @@ api_key.py
 Combined_crypto_Data.csv
 package/
 *.zip
-
+.csv

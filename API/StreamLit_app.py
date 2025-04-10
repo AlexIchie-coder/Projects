@@ -1,121 +1,200 @@
 import streamlit as st  
 from dotenv import load_dotenv
 import os
-import numpy as np
 import pandas as pd
 import psycopg
+from datetime import datetime
 
 load_dotenv()
 
-def get_data(curr):
-    print("getting data for ", curr)
+def get_db_connection():
+    """Establish database connection"""
     dbconn = os.getenv("DBCONN")
-    conn = psycopg.connect(dbconn)
-    cur = conn.cursor()
+    return psycopg.connect(dbconn)
 
-    cur.execute('''
-        SELECT * FROM crypto where symbol = %s;
-    ''', (curr,))
-
-    Crypto_data =  cur.fetchall()
-    cur.close()
-    conn.close()
-
-    crypto_data= pd.DataFrame(Crypto_data, columns = ['date','symbol','open','high','low','close','volume'])
-    return crypto_data
-
-
-
-st.title("CRYPTO MARKET UPDATES")
-st.title("Digital Currency is :gold[cool] :money_with_wings:")
-
-st.divider()
-
-currency = st.selectbox(
-    "Select Crypto Currency",
-    ("BTC", "ETH", "SOL"),
-)
-
-crypto_data = get_data(currency)
-
-st.write('You selected', currency)
-
-
-
-
-# # Load your dataset
-# #@st.cache_data  # Cache the data for better performance
-# def load_data():
-#     return pd.read_csv('Combined_Crypto_Data.csv')  # Make sure the file is in your working directory
-
-
-
-# # Load the data
-# crypto_data = load_data()
-
-crypto_data['date'] = pd.to_datetime(crypto_data['date'])
-
-# # Display the raw data if needed
-# st.write("Raw Crypto Data Preview:")
-# st.dataframe(crypto_data.head())
-
-# # Create line chart with your actual data
-st.subheader("Crypto Market Trends")
-st.line_chart(crypto_data, x="date", y="open")  # Adjust columns to match your dataset
-
-# # Alternative: If you want to keep the original structure but with your data
-# if len(crypto_data) >= 20:
-#     chart_data = crypto_data[['open', 'high', 'currency_name']].head(20)  # Get first 20 rows
-#     chart_data.columns = ["a", "b", "c"]  # Rename columns to match original example
-#     st.line_chart(chart_data)
-# else:
-#     st.warning("Not enough data points (need at least 20 rows)")
-
-
-# Function to fetch crypto news from PostgreSQL
-def get_crypto_news():
+def get_crypto_data(currency, year=None):
+    """Fetch cryptocurrency price data with optional year filter"""
     try:
-        dbconn = os.getenv("DBCONN")  # Get DB connection string from environment variable
-        if not dbconn:
-            st.error("Database connection string not found.")
-            return pd.DataFrame()
-
-        conn = psycopg.connect(dbconn)
+        conn = get_db_connection()
         cur = conn.cursor()
 
-        # Query to fetch crypto news
-        query = "SELECT date, title, currency FROM crypto_news ORDER BY date DESC;"
-        df = pd.read_sql(query, conn)
+        if year:
+            query = '''
+                SELECT * FROM crypto 
+                WHERE symbol = %s 
+                AND date >= %s 
+                AND date <= %s
+                ORDER BY date ASC;
+            '''
+            start_date = datetime(year, 1, 1).strftime('%Y-%m-%d')
+            end_date = datetime(year, 12, 31).strftime('%Y-%m-%d')
+            cur.execute(query, (currency, start_date, end_date))
+        else:
+            cur.execute('''
+                SELECT * FROM crypto 
+                WHERE symbol = %s 
+                ORDER BY date DESC;
+            ''', (currency,))
 
+        crypto_data = cur.fetchall()
         cur.close()
         conn.close()
-        return df
 
+        if crypto_data:
+            df = pd.DataFrame(crypto_data, columns=['date','symbol','open','high','low','close','volume'])
+            df['date'] = pd.to_datetime(df['date'])
+            return df
+        return pd.DataFrame()
+    
     except Exception as e:
-        st.error(f"Error connecting to database: {e}")
-        return pd.DataFrame()  # Return empty DataFrame on failure
+        st.error(f"Error fetching crypto data: {e}")
+        return pd.DataFrame()
 
-# Streamlit App
-def main():
-    st.title("📈 Crypto News Dashboard")
+def get_crypto_news(currency=None):
+    """Fetch crypto news with optional currency filter"""
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor()
 
-    # Fetch data from PostgreSQL
-    news_df = get_crypto_news()
+        if currency:
+            cur.execute('''
+                SELECT date, title, currency 
+                FROM crypto_news 
+                WHERE currency = %s
+                ORDER BY date DESC
+                LIMIT 100;
+            ''', (currency,))
+        else:
+            cur.execute('''
+                SELECT date, title, currency 
+                FROM crypto_news 
+                ORDER BY date DESC
+                LIMIT 100;
+            ''')
 
-    if news_df.empty:
-        st.warning("⚠️ No news data found. Check your database connection.")
+        news_data = cur.fetchall()
+        cur.close()
+        conn.close()
+
+        if news_data:
+            df = pd.DataFrame(news_data, columns=['date','title','currency'])
+            df['date'] = pd.to_datetime(df['date'])
+            return df
+        return pd.DataFrame()
+    
+    except Exception as e:
+        st.error(f"Error fetching news: {e}")
+        return pd.DataFrame()
+
+def display_news_by_currency():
+    """Display news filtered by selected currency"""
+    st.subheader("🔍 Filter News by Currency")
+    
+    # Currency selection for news
+    news_currency = st.selectbox(
+        "Select Currency for News",
+        ("All", "Bitcoin", "Ethereum", "Solana"),
+        key="news_currency"
+    )
+    
+    # Get news based on selection
+    if news_currency == "All":
+        news_df = get_crypto_news()
+        title = "All Crypto News"
     else:
-        # Display news in a table
-        st.subheader("📰 Latest Crypto News")
-        st.dataframe(news_df)
+        news_df = get_crypto_news(news_currency)
+        title = f"{news_currency} News"
+    
+    if not news_df.empty:
+        # Display as dataframe
+        st.dataframe(
+            news_df,
+            column_config={
+                "date": "Date",
+                "title": "Headline",
+                "currency": "Currency"
+            },
+            use_container_width=True,
+            hide_index=True
+        )
+        
+        # Display as expandable list
+        with st.expander("View as List"):
+            news_df['date'] = pd.to_datetime(news_df['date']).dt.date
+            for _, row in news_df.iterrows():
+                st.markdown(f"""
+                **{row['date']}**  
+                {row['title']}  
+                *{row['currency']}*
+                """)
+                st.divider()
+    else:
+        st.warning("No news found for the selected currency")
 
-        # Display news as a list
-        st.subheader("📅 News Highlights")
-        for _, row in news_df.iterrows():
-            st.write(f"📆 {row['date'].strftime('%Y-%m-%d')} | 📰 **{row['title']}** ({row['currency']})")
+def main():
+    st.set_page_config(page_title="Crypto Dashboard", layout="wide")
+    
+    st.title("💰 Crypto Market Dashboard")
+    st.markdown("Digital Currency is :gold[cool] :money_with_wings:")
+    st.divider()
+    
+    # Sidebar for filters
+    with st.sidebar:
+        st.header("Filters")
+        currency = st.selectbox(
+            "Select Crypto Currency",
+            ("BTC", "ETH", "SOL"),
+            index=0
+        )
+        
+        # Year selection for price data
+        current_year = datetime.now().year
+        selected_year = st.selectbox(
+            "Select Year for Price Data",
+            range(2024, current_year + 1),
+            index=len(range(2024, current_year + 1)) - 1  # Default to current year
+        )
+        
+        st.markdown("---")
+        st.markdown("### About")
+        st.markdown("This dashboard displays cryptocurrency market data and news.")
+    
+    # Main content - Price Data
+    st.subheader(f"{currency} Price Data ({selected_year})")
+    crypto_data = get_crypto_data(currency, selected_year)
+    
+    if not crypto_data.empty:
+        col1, col2 = st.columns([3, 1])
+        
+        with col1:
+            # Filter data for the selected year
+            yearly_data = crypto_data[
+                (crypto_data['date'].dt.year == selected_year)
+            ]
+            
+            if not yearly_data.empty:
+                st.line_chart(yearly_data, x="date", y=["high", "low"])
+            else:
+                st.warning(f"No data available for {selected_year}")
+        
+        with col2:
+            latest = crypto_data.iloc[0] if not crypto_data.empty else None
+            if latest is not None:
+                st.metric("Current Price", f"${latest['close']:,.2f}")
+                st.markdown(f"""
+                - **Open:** ${latest['open']:,.2f}
+                - **High:** ${latest['high']:,.2f}
+                - **Low:** ${latest['low']:,.2f}
+                - **Volume:** {latest['volume']:,.0f}
+                """)
+            else:
+                st.warning("No price data available")
+    else:
+        st.warning("No price data available for the selected currency")
+    
+    # News section
+    st.divider()
+    display_news_by_currency()
 
-# Run the Streamlit App
 if __name__ == "__main__":
     main()
-
-
