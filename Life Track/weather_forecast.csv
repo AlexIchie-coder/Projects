@@ -1,0 +1,73 @@
+date,time,city,country,temperature_c,temperature_f,condition,wind_kph,humidity
+2025-04-11,00:00,Berlin,Germany,8.0,46.4,Clear ,22.3,75
+2025-04-11,01:00,Berlin,Germany,7.2,45.0,Overcast ,22.3,76
+2025-04-11,02:00,Berlin,Germany,6.6,43.9,Partly Cloudy ,23.8,77
+2025-04-11,03:00,Berlin,Germany,5.9,42.5,Overcast ,24.8,82
+2025-04-11,04:00,Berlin,Germany,6.8,44.2,Overcast ,26.6,76
+2025-04-11,05:00,Berlin,Germany,7.4,45.3,Partly Cloudy ,23.8,73
+2025-04-11,06:00,Berlin,Germany,6.7,44.0,Partly Cloudy ,23.4,78
+2025-04-11,07:00,Berlin,Germany,7.2,45.0,Partly Cloudy ,24.5,76
+2025-04-11,08:00,Berlin,Germany,8.7,47.6,Partly Cloudy ,25.6,70
+2025-04-11,09:00,Berlin,Germany,10.4,50.7,Partly Cloudy ,26.3,59
+2025-04-11,10:00,Berlin,Germany,12.4,54.4,Partly Cloudy ,27.7,55
+2025-04-11,11:00,Berlin,Germany,14.2,57.6,Partly Cloudy ,27.4,54
+2025-04-11,12:00,Berlin,Germany,15.3,59.6,Patchy rain nearby,28.8,54
+2025-04-11,13:00,Berlin,Germany,14.5,58.1,Overcast ,24.8,58
+2025-04-11,14:00,Berlin,Germany,11.0,51.8,Overcast,21.2,66
+2025-04-11,15:00,Berlin,Germany,14.7,58.5,Patchy rain nearby,21.2,61
+2025-04-11,16:00,Berlin,Germany,13.9,57.0,Light drizzle,21.6,71
+2025-04-11,17:00,Berlin,Germany,13.8,56.8,Patchy rain nearby,18.0,73
+2025-04-11,18:00,Berlin,Germany,13.1,55.6,Patchy rain nearby,13.0,75
+2025-04-11,19:00,Berlin,Germany,12.0,53.7,Patchy rain nearby,10.1,80
+2025-04-11,20:00,Berlin,Germany,11.2,52.1,Patchy rain nearby,9.4,85
+2025-04-11,21:00,Berlin,Germany,10.6,51.1,Patchy rain nearby,9.0,88
+2025-04-11,22:00,Berlin,Germany,10.6,51.1,Patchy rain nearby,10.1,88
+2025-04-11,23:00,Berlin,Germany,10.5,50.9,Patchy rain nearby,11.2,90
+2025-04-12,00:00,Berlin,Germany,10.0,49.9,Patchy rain nearby,11.5,92
+2025-04-12,01:00,Berlin,Germany,9.4,48.8,Cloudy ,10.1,93
+2025-04-12,02:00,Berlin,Germany,8.5,47.2,Mist,9.4,96
+2025-04-12,03:00,Berlin,Germany,7.9,46.2,Mist,7.6,97
+2025-04-12,04:00,Berlin,Germany,7.5,45.6,Fog,7.9,97
+2025-04-12,05:00,Berlin,Germany,7.8,46.0,Mist,8.3,96
+2025-04-12,06:00,Berlin,Germany,8.1,46.7,Overcast ,9.4,93
+2025-04-12,07:00,Berlin,Germany,8.5,47.3,Overcast ,8.6,90
+2025-04-12,08:00,Berlin,Germany,9.2,48.6,Partly Cloudy ,7.6,87
+2025-04-12,09:00,Berlin,Germany,10.9,51.5,Partly Cloudy ,7.6,76
+2025-04-12,10:00,Berlin,Germany,12.8,55.1,Sunny,7.6,64
+2025-04-12,11:00,Berlin,Germany,14.8,58.7,Sunny,7.9,54
+2025-04-12,12:00,Berlin,Germany,16.4,61.5,Sunny,7.6,46
+2025-04-12,13:00,Berlin,Germany,17.7,63.8,Sunny,5.4,41
+2025-04-12,14:00,Berlin,Germany,18.5,65.3,Sunny,4.3,38
+2025-04-12,15:00,Berlin,Germany,18.7,65.6,Sunny,2.5,38
+2025-04-12,16:00,Berlin,Germany,18.4,65.2,Sunny,2.2,39
+2025-04-12,17:00,Berlin,Germany,18.1,64.6,Sunny,3.6,39
+2025-04-12,18:00,Berlin,Germany,17.1,62.8,Sunny,5.4,44
+2025-04-12,19:00,Berlin,Germany,15.1,59.2,Sunny,7.2,50
+2025-04-12,20:00,Berlin,Germany,14.1,57.3,Clear ,7.9,54
+2025-04-12,21:00,Berlin,Germany,13.1,55.6,Clear ,9.7,59
+2025-04-12,22:00,Berlin,Germany,12.4,54.2,Clear ,10.4,67
+2025-04-12,23:00,Berlin,Germany,11.9,53.5,Clear ,9.7,73
+2025-04-13,00:00,Berlin,Germany,11.5,52.6,Clear ,10.8,77
+2025-04-13,01:00,Berlin,Germany,11.1,51.9,Clear ,11.5,78
+2025-04-13,02:00,Berlin,Germany,10.6,51.2,Clear ,11.9,79
+2025-04-13,03:00,Berlin,Germany,10.3,50.5,Clear ,11.9,79
+2025-04-13,04:00,Berlin,Germany,9.9,49.9,Clear ,11.5,80
+2025-04-13,05:00,Berlin,Germany,9.6,49.3,Clear ,11.5,81
+2025-04-13,06:00,Berlin,Germany,9.8,49.7,Clear ,11.2,79
+2025-04-13,07:00,Berlin,Germany,11.4,52.5,Sunny,13.3,71
+2025-04-13,08:00,Berlin,Germany,13.6,56.4,Sunny,15.5,62
+2025-04-13,09:00,Berlin,Germany,15.8,60.5,Sunny,15.8,55
+2025-04-13,10:00,Berlin,Germany,18.2,64.7,Partly Cloudy ,16.2,48
+2025-04-13,11:00,Berlin,Germany,19.9,67.8,Partly Cloudy ,18.0,43
+2025-04-13,12:00,Berlin,Germany,20.6,69.2,Partly Cloudy ,19.8,44
+2025-04-13,13:00,Berlin,Germany,20.4,68.7,Partly Cloudy ,22.7,47
+2025-04-13,14:00,Berlin,Germany,19.3,66.8,Partly Cloudy ,18.7,53
+2025-04-13,15:00,Berlin,Germany,19.4,66.9,Partly Cloudy ,18.7,54
+2025-04-13,16:00,Berlin,Germany,20.4,68.6,Light drizzle,19.1,52
+2025-04-13,17:00,Berlin,Germany,19.2,66.6,Patchy light drizzle,18.7,60
+2025-04-13,18:00,Berlin,Germany,17.6,63.6,Light rain shower,18.0,68
+2025-04-13,19:00,Berlin,Germany,16.4,61.6,Patchy rain nearby,13.7,72
+2025-04-13,20:00,Berlin,Germany,15.2,59.4,Partly Cloudy ,10.8,77
+2025-04-13,21:00,Berlin,Germany,14.2,57.5,Patchy rain nearby,9.4,81
+2025-04-13,22:00,Berlin,Germany,13.7,56.6,Overcast ,9.4,84
+2025-04-13,23:00,Berlin,Germany,13.6,56.4,Partly Cloudy ,9.0,85
