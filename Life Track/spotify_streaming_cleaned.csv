@@ -3105,7 +3105,7 @@ endTime,artistName,trackName,msPlayed,genre,main_genre
 2024-10-05 00:25:00,The Unexplainable Store,Pineal Gland (662hz),120058,[],Unknown
 2024-10-05 00:26:00,Horizon Project,Clouds,75888,[],Unknown
 2024-10-05 00:29:00,Alm Bark,Yonral,203834,[],Unknown
-2024-10-05 00:33:00,D-Well,Base Chakra Healing (396 Hz),196363,['ska punk'],ska punk
+2024-10-05 00:33:00,D-Well,Base Chakra Healing (396 Hz),196363,[],Unknown
 2024-10-05 00:35:00,Entrainment,888 Hz Attract and Manifest Money,137483,[],Unknown
 2024-10-05 00:39:00,Emiliano Bruguera,444 Hz Remove all Blockages,252026,[],Unknown
 2024-10-05 00:41:00,Shiroishi,639 Hz - Dreaming,83197,[],Unknown
@@ -16893,10 +16893,10 @@ endTime,artistName,trackName,msPlayed,genre,main_genre
 2024-08-23 13:02:00,Aykut Bilir,Humans,463200,"['organic house', 'downtempo', 'tribal house']",organic house
 2024-08-23 13:08:00,Stefan Obermaier,Matang - Slow Nomaden Remix,325819,"['organic house', 'downtempo']",organic house
 2024-08-23 13:13:00,Slow Nomaden,Dancing Colours,296053,"['organic house', 'downtempo', 'tribal house']",organic house
-2024-08-23 13:18:00,Santi & Tuğçe,Terminal Caribe,343068,[],Unknown
+2024-08-23 13:18:00,Santi & Tuğçe,Terminal Caribe,343068,"['organic house', 'downtempo']",organic house
 2024-08-23 13:23:00,Mose,Vem Mae Natureza - Scott Nice Remix,307652,[],Unknown
 2024-08-23 13:27:00,Jose Solano,Savage,230640,"['organic house', 'downtempo', 'tribal house']",organic house
-2024-08-23 13:31:00,Mollono.Bass,Turn A Light On,230000,[],Unknown
+2024-08-23 13:31:00,Mollono.Bass,Turn A Light On,230000,['organic house'],organic house
 2024-08-23 13:36:00,Slow Nomaden,Boho,293000,"['organic house', 'downtempo', 'tribal house']",organic house
 2024-08-23 13:46:00,Aleceo,Maria,590042,"['organic house', 'downtempo']",organic house
 2024-08-23 13:52:00,Le Rubrique,Mumbai Sunrise - Slow Nomaden Remix,370345,"['italo disco', 'italo dance', 'disco house', 'nu disco']",italo disco
@@ -17764,7 +17764,7 @@ endTime,artistName,trackName,msPlayed,genre,main_genre
 2024-08-29 22:07:00,Olamide,Jinja,155019,"['afrobeats', 'afrobeat', 'afropop', 'afropiano', 'azonto', 'afro adura', 'afroswing', 'amapiano']",afrobeats
 2024-08-29 22:10:00,Omah Lay,Holy Ghost,186153,"['afrobeats', 'afrobeat', 'afropop', 'afropiano', 'afro soul', 'alté', 'afroswing']",afrobeats
 2024-08-29 22:12:00,Asake,Organise,123716,['traditional music'],traditional music
-2024-08-29 22:14:00,RUNTY,Calm down cover,129306,"['norteño-sax', 'corridos tumbados', 'sad sierreño']",norteño-sax
+2024-08-29 22:14:00,RUNTY,Calm down cover,129306,[],Unknown
 2024-08-29 22:18:00,Camidoh,Sugarcane - Remix,251147,"['afrobeats', 'afrobeat', 'hiplife', 'afropop', 'afropiano']",afrobeats
 2024-08-29 22:28:00,SPINALL,One Call,75277,"['afrobeats', 'afrobeat', 'afropop', 'afropiano', 'alté', 'afroswing', 'azonto']",afrobeats
 2024-08-29 22:29:00,Spiritual Frequencies,852 Hz Third Eye Chakra,89600,[],Unknown
@@ -18852,7 +18852,7 @@ endTime,artistName,trackName,msPlayed,genre,main_genre
 2024-09-09 19:20:00,ODUMODUBLVCK,BLOOD ON THE DANCE FLOOR (feat. Bloody Civilian and Wale),233571,"['afrobeats', 'alté', 'afrobeat', 'afropiano', 'afropop', 'afro adura', 'afroswing']",afrobeats
 2024-09-09 19:23:00,Omah Lay,i'm a mess,153946,"['afrobeats', 'afrobeat', 'afropop', 'afropiano', 'afro soul', 'alté', 'afroswing']",afrobeats
 2024-09-09 19:25:00,Asake,2:30,138305,['traditional music'],traditional music
-2024-09-09 19:27:00,RUNTY,Calm down cover,129306,"['norteño-sax', 'corridos tumbados', 'sad sierreño']",norteño-sax
+2024-09-09 19:27:00,RUNTY,Calm down cover,129306,[],Unknown
 2024-09-09 19:31:00,Ruger,Asiwaju,216000,"['afrobeats', 'afrobeat', 'afropop', 'afropiano', 'afroswing', 'afro soul']",afrobeats
 2024-09-09 19:34:00,Olamide,Jinja,155019,"['afrobeats', 'afrobeat', 'afropop', 'afropiano', 'azonto', 'afro adura', 'afroswing', 'amapiano']",afrobeats
 2024-09-09 19:36:00,PLÜM,Yebba's Heartbreak (I Do),145000,"['corrido', 'corridos tumbados', 'corridos bélicos', 'música mexicana', 'sad sierreño', 'electro corridos', 'banda']",corrido
