@@ -1,6 +1,5 @@
 import streamlit as st
 st.set_page_config(page_title="Weather Dashboard", layout="wide")
-
 import pandas as pd
 import altair as alt
 import time
@@ -19,7 +18,6 @@ def load_weather_data():
 def show_weather_dashboard(weather_df):
     placeholder = st.empty()
 
-    # Loading animation
     with placeholder.container():
         st.title("🌤️ Loading Your Weather Dashboard...")
         st.progress(30)
@@ -31,7 +29,6 @@ def show_weather_dashboard(weather_df):
     placeholder.empty()
     st.title("🌤️ Weather Dashboard")
 
-    # City selector with unique key
     cities = sorted(weather_df["city"].unique())
     selected_city = st.selectbox("Select a city", cities, key="weather_dashboard_city_selector")
     city_df = weather_df[weather_df["city"] == selected_city]
@@ -43,7 +40,6 @@ def show_weather_dashboard(weather_df):
         st.warning("No data for today.")
         return
 
-    # Emoji animation
     emoji_cycle = cycle(["☁️", "🌧️", "🌤️", "☀️"])
     emoji_placeholder = st.empty()
     for _ in range(6):
@@ -51,21 +47,21 @@ def show_weather_dashboard(weather_df):
         time.sleep(0.2)
     emoji_placeholder.empty()
 
-    # Current Season
     st.subheader("Current Season")
     current_season = today_data["season"].iloc[0] if "season" in today_data.columns else "Unknown"
     st.info(f"It's currently **{current_season}** in {selected_city} 🌱")
 
-    # Today's Summary
+    # 🌤️ Today's Summary with Humidity
     st.subheader("Today's Weather Summary")
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Temperature", f"{today_data['temp'].iloc[0]:.1f} °C")
-    col2.metric("Precipitation", f"{today_data['precip'].iloc[0]:.1f} mm")
-    col3.metric("Windspeed", f"{today_data['windspeed'].iloc[0]:.1f} km/h")
+    cols = st.columns(4)
+    cols[0].metric("🌡️ Temperature", f"{today_data['temp'].iloc[0]:.1f} °C")
+    cols[1].metric("🌧️ Precipitation", f"{today_data['precip'].iloc[0]:.1f} mm")
+    cols[2].metric("💨 Windspeed", f"{today_data['windspeed'].iloc[0]:.1f} km/h")
+    if 'humidity' in today_data.columns:
+        cols[3].metric("💧 Humidity", f"{today_data['humidity'].iloc[0]:.0f}%")
 
-    # 📊 Visual Summary: Today's Weather vs Avg
+    # 📊 Visual Summary
     st.subheader("📊 Visual Summary: Today vs Weekly Average")
-
     past_week = city_df[city_df["datetime"] < today].sort_values("datetime").tail(7)
     avg_temp = past_week["temp"].mean() if not past_week.empty else None
     avg_precip = past_week["precip"].mean() if not past_week.empty else None
@@ -99,7 +95,7 @@ def show_weather_dashboard(weather_df):
 
     st.altair_chart(bar_chart + avg_lines, use_container_width=True)
 
-    # 📉 Past Days Temperature
+    # 📉 Past 7-Day Trend
     st.subheader("📉 Past 7 Days Temperature Trend")
     past_data = city_df[city_df["datetime"] < today].sort_values("datetime").tail(7)
     if not past_data.empty:
@@ -113,6 +109,53 @@ def show_weather_dashboard(weather_df):
     else:
         st.info("Not enough data for past week trend.")
 
+    # 🎬 Animated Weather Timeline (Play/Pause)
+    st.subheader("🎬 Animated Weather Timeline (Play/Pause)")
+
+    anim_data = city_df[city_df["datetime"] < today].sort_values("datetime").tail(10)
+
+    if not anim_data.empty:
+        anim_data["date_str"] = anim_data["date"].astype(str)
+
+    # Play/pause control using session_state
+    if "animating" not in st.session_state:
+        st.session_state.animating = False
+
+    play_pause_label = "▶️ Play" if not st.session_state.animating else "⏸️ Pause"
+    if st.button(play_pause_label, key="play_pause_btn"):
+        st.session_state.animating = not st.session_state.animating
+
+    frame_placeholder = st.empty()
+
+    if st.session_state.animating:
+        for date in anim_data["date_str"]:
+            if not st.session_state.animating:
+                break  # Exit loop if paused
+
+            highlight_df = anim_data[anim_data["date_str"] == date]
+
+            base_chart = alt.Chart(anim_data).mark_circle(size=120).encode(
+                x=alt.X("day_of_week:N", sort=["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], title="Day"),
+                y=alt.Y("temp:Q", title="Temperature (°C)"),
+                color=alt.Color("humidity:Q", scale=alt.Scale(scheme="blues"), title="Humidity (%)"),
+                tooltip=["datetime", "temp", "humidity", "precip", "windspeed"]
+            ).properties(height=350, width=700)
+
+            highlight_layer = alt.Chart(highlight_df).mark_circle(size=300, color="orange").encode(
+                x="day_of_week:N",
+                y="temp:Q"
+            )
+
+            chart = (base_chart + highlight_layer).properties(title=f"Weather on {date}")
+            frame_placeholder.altair_chart(chart, use_container_width=True)
+
+            time.sleep(0.5)
+    else:
+        st.info("Not enough data for animation.")
+
+
+
+
     # 👕 Clothing Tip
     st.subheader("👕 Clothing Recommendation")
     if "clothing_recommendation" in today_data.columns:
@@ -120,7 +163,7 @@ def show_weather_dashboard(weather_df):
     else:
         st.info("No clothing tip available.")
 
-    # 🌤️ Final Weather Emoji
+    # 🌤️ Condition
     condition = today_data["condition"].iloc[0] if "condition" in today_data.columns else ""
     emoji = "☀️" if "sun" in condition.lower() else "🌧️" if "rain" in condition.lower() else "☁️"
     st.markdown(f"### Today's Condition: {emoji} **{condition}**")
@@ -141,12 +184,14 @@ def show_weather_dashboard(weather_df):
                 st.write(f"- Temperature: {row['temp']} °C")
                 st.write(f"- Precipitation: {row['precip']} mm")
                 st.write(f"- Windspeed: {row['windspeed']} km/h")
+                if "humidity" in row:
+                    st.write(f"- Humidity: {row['humidity']}%")
                 st.write(f"- Condition: {row['condition']}")
                 st.markdown("---")
     else:
         st.info("No forecast data available for the next 3 days.")
 
-# --- Run Only When This File is Executed Directly ---
+# --- Run ---
 if __name__ == "__main__":
     weather_df = load_weather_data()
     show_weather_dashboard(weather_df)

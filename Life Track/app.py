@@ -1,20 +1,19 @@
 import streamlit as st
-import altair as alt
-import time
-from datetime import timedelta
-import pandas as pd
-from eda.weather_eda import show_weather_dashboard
-from eda.spotify_eda import show_spotify_dashboard
+st.set_page_config(page_title="Life Track Dashboard", layout="wide")
 
-# Load data
-weather_df = pd.read_csv("merged_weather_data.csv", parse_dates=["datetime"])
-spotify_df = pd.read_csv("spotify_streaming_cleaned.csv", parse_dates=["endTime"])
+from eda.weather_eda import show_weather_dashboard, load_weather_data
+from eda.spotify_eda import show_spotify_dashboard, load_spotify_data
 
-# Sidebar navigation
-page = st.sidebar.selectbox("Choose a page", ["Weather", "Spotify"])
+# Load data upfront
+weather_df = load_weather_data()
+spotify_df = load_spotify_data()
 
-# Routing logic
-if page == "Weather":
+# Sidebar
+st.sidebar.title("📊 Life Track")
+selected = st.sidebar.radio("Choose Dashboard", ["Weather", "Spotify"])
+
+# Show selected dashboard
+if selected == "Weather":
     show_weather_dashboard(weather_df)
-elif page == "Spotify":
+elif selected == "Spotify":
     show_spotify_dashboard(spotify_df)
