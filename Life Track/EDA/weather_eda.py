@@ -111,6 +111,7 @@ def show_weather_dashboard(weather_df):
         time.sleep(0.2)
     emoji_placeholder.empty()
 
+
     # --- Today's Weather Summary
     st.markdown('<div class="shiny-subheader">📋 Today\'s Weather Summary</div>', unsafe_allow_html=True)
     cols = st.columns(4)
@@ -194,7 +195,7 @@ def show_weather_dashboard(weather_df):
 
     
     # --- Past 7 Days Temperature Trend
-    st.subheader("📉 Past 7 Days Temperature Trend")
+    st.markdown('<div class="shiny-subheader">📉 Past 7 Days Temperature Trend</div>', unsafe_allow_html=True)
     past_data = city_df[city_df["datetime"] < today].sort_values("datetime").tail(7)
     if not past_data.empty:
         chart = alt.Chart(past_data).mark_bar(
@@ -211,59 +212,60 @@ def show_weather_dashboard(weather_df):
     else:
         st.info("Not enough data for past week trend.")
 
-    # --- Seasonal Insights
-    st.header("🌸☀️🍂❄️ Seasonal Insights")
+    
 
-    seasons = ["Spring", "Summer", "Autumn", "Winter"]
-    for season in seasons:
-        emoji = season_emoji.get(season, "🌱")
-        st.subheader(f"Season: {season} {emoji}")
-        season_df = city_df[city_df["season"] == season]
+    # --- Seasonal Insights (Inside Expander)
+    with st.expander("🌸☀️🍂❄️ Seasonal Insights"):
+        for season in ["Spring", "Summer", "Autumn", "Winter"]:
+            emoji = season_emoji.get(season, "🌱")
+            st.subheader(f"Season: {season} {emoji}")
+            season_df = city_df[city_df["season"] == season]
 
-        if season_df.empty:
-            st.info(f"No data for {season}.")
-            continue
+            if season_df.empty:
+                st.info(f"No data for {season}.")
+                continue
 
-        avg_temp = season_df["temp"].mean()
-        avg_precip = season_df["precip"].mean()
-        avg_wind = season_df["windspeed"].mean()
+            avg_temp = season_df["temp"].mean()
+            avg_precip = season_df["precip"].mean()
+            avg_wind = season_df["windspeed"].mean()
 
-        weather_chart_data = pd.DataFrame({
-            "Metric": ["Temperature (°C)", "Precipitation (mm)", "Windspeed (km/h)"],
-            "Average": [avg_temp, avg_precip, avg_wind],
-            "Color": ["#ff4d4d", "#80bfff", "#66ccff"]
-        })
+            weather_chart_data = pd.DataFrame({
+                "Metric": ["Temperature (°C)", "Precipitation (mm)", "Windspeed (km/h)"],
+                "Average": [avg_temp, avg_precip, avg_wind],
+                "Color": ["#ff4d4d", "#80bfff", "#66ccff"]
+            })
 
-        bars = alt.Chart(weather_chart_data).mark_bar(
-            cornerRadiusTopLeft=8,
-            cornerRadiusTopRight=8
-        ).encode(
-            x=alt.X("Metric:N", title=None, axis=alt.Axis(labelAngle=0)),
-            y=alt.Y("Average:Q", title="Average Value"),
-            color=alt.Color("Color:N", scale=None),
-            tooltip=["Metric", "Average"]
-        )
-
-        st.altair_chart(bars, use_container_width=True)
-
-        if "clothing_recommendation" in season_df.columns:
-            clothing_counts = season_df["clothing_recommendation"].value_counts().head(5).reset_index()
-            clothing_counts.columns = ["Clothing", "Count"]
-
-            pie = alt.Chart(clothing_counts).mark_arc(innerRadius=50).encode(
-                theta=alt.Theta(field="Count", type="quantitative"),
-                color=alt.Color(field="Clothing", type="nominal", scale=alt.Scale(scheme="pastel2")),
-                tooltip=["Clothing", "Count"]
-            ).properties(
-                title=f"🧥 Top 5 Clothing Recommendations - {season}"
+            bars = alt.Chart(weather_chart_data).mark_bar(
+                cornerRadiusTopLeft=8,
+                cornerRadiusTopRight=8
+            ).encode(
+                x=alt.X("Metric:N", title=None, axis=alt.Axis(labelAngle=0)),
+                y=alt.Y("Average:Q", title="Average Value"),
+                color=alt.Color("Color:N", scale=None),
+                tooltip=["Metric", "Average"]
             )
 
-            st.altair_chart(pie, use_container_width=True)
-        else:
-            st.info(f"No clothing recommendation data for {season}.")
+            st.altair_chart(bars, use_container_width=True)
+
+            if "clothing_recommendation" in season_df.columns:
+                clothing_counts = season_df["clothing_recommendation"].value_counts().head(5).reset_index()
+                clothing_counts.columns = ["Clothing", "Count"]
+
+                pie = alt.Chart(clothing_counts).mark_arc(innerRadius=50).encode(
+                    theta=alt.Theta(field="Count", type="quantitative"),
+                    color=alt.Color(field="Clothing", type="nominal", scale=alt.Scale(scheme="pastel2")),
+                    tooltip=["Clothing", "Count"]
+                ).properties(
+                    title=f"🧥 Top 5 Clothing Recommendations - {season}"
+                )
+
+                st.altair_chart(pie, use_container_width=True)
+            else:
+                st.info(f"No clothing recommendation data for {season}.")
+
 
     # --- Full Year Summary
-    st.header("📈 Weather Summary - Full Year")
+    st.markdown('<div class="shiny-subheader">📈 Weather Summary - Full Year</div>', unsafe_allow_html=True)
     full_year_chart = alt.Chart(city_df).mark_line(
         interpolate='monotone',
         point=True
@@ -278,7 +280,7 @@ def show_weather_dashboard(weather_df):
     st.altair_chart(full_year_chart, use_container_width=True)
 
     # --- Clothing Recommendation Full Year
-    st.header("🧥 Clothing Recommendation - Full Year")
+    st.markdown('<div class="shiny-subheader">🧥 Clothing Recommendation - Full Year</div>', unsafe_allow_html=True)
     if "clothing_recommendation" in city_df.columns:
         full_year_clothing = city_df["clothing_recommendation"].value_counts().reset_index()
         full_year_clothing.columns = ["Clothing", "Count"]
@@ -306,7 +308,7 @@ def show_weather_dashboard(weather_df):
     else:
         emoji = "☁️"
 
-    st.markdown(f"### Today's Condition: {emoji} **{condition}**")
+    st.markdown(f'<div class="shiny-subheader">### Today\'s Condition: {emoji} **{condition}**</div>', unsafe_allow_html=True) #st.markdown(f"### Today's Condition: {emoji} **{condition}**")
 
     # --- Next 3 Days Forecast
     st.subheader("📅 Next 3 Days Forecast")
